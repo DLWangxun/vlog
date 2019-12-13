@@ -36,4 +36,6 @@ public class SimpleEmailAmqpProperties {
 
     private Integer retryTimeSlot;
 
+    private Integer defaultExpressTime;
+
 }

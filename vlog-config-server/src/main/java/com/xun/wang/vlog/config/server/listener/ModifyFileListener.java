@@ -73,7 +73,6 @@ public class ModifyFileListener {
                         String refreshServiceName = refreshServiceNames.size() > 0 ? refreshServiceNames.get(0) : null;
                         //发布事件,/bus/refresh?destination={对应的服务}集群
                         if(StringUtils.isNotBlank(refreshServiceName)){
-
                             //本地ip
                             String host = "localhost";
                             //本地端口
@@ -85,7 +84,7 @@ public class ModifyFileListener {
                             builder.path("/actuator/bus-refresh");
                             builder.query("destination={destination}");
                             URI uri = builder.build().expand(refreshServiceName.concat(":**")).encode().toUri();
-                            ResponseEntity responseEntity = restTemplate.postForEntity("http://localhost:8888/actuator/bus-refresh?destination=vlog-message-client:**",null,boolean.class);
+                            ResponseEntity responseEntity = restTemplate.postForEntity(uri,null,boolean.class);
                         }
                         continue;
                     }

@@ -69,11 +69,9 @@ public class SimpleEmailAmqpConfig {
     Queue retryQueue() {
         Map<String, Object> args = new HashMap<>(2);
         //声明重试交换器
-        args.put("x-dead-letter-exchange",simpleEmailAmqpProperties.getWorkQueueName());
+        args.put("x-dead-letter-exchange",simpleEmailAmqpProperties.getWorkExchangeName());
         //声明重试路由键
         args.put("x-dead-letter-routing-key",simpleEmailAmqpProperties.getWorkRoutingKey());
-        //声明队列消息过期时间
-        args.put("x-message-ttl", 1000);
         return new Queue(simpleEmailAmqpProperties.getRetryQueueName(), true, false, false,args);
     }
 

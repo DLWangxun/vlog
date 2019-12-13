@@ -25,8 +25,6 @@ public class SendToPersonController {
 
     @Autowired
     private ISimpleEmailService simpleEmailService;
-    @Value("${my.test}")
-    private String value;
 
 
     /**

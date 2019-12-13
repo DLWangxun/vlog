@@ -45,10 +45,6 @@ public class SendToPersonAmqpCustomer {
             return;
         }
         try {
-            int a = 0;
-            if(a==0){
-                throw  new Exception("模拟异常");
-            }
             SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
             simpleMailMessage.setFrom(simpleEmail.getSender());
             simpleMailMessage.setTo(simpleEmail.getReciever());
@@ -60,18 +56,17 @@ public class SendToPersonAmqpCustomer {
             // 获取重试次数
             Integer currentRetryTimes = (Integer) headers.get("retryTimes");
             try {
-                if (currentRetryTimes >= retryTimes) {
+                if (currentRetryTimes > retryTimes) {
                     channel.basicReject((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
                 } else {
                     // 消息发送到队尾
-                    simpleEmailService.retrySendSimpleEmailToPerson(simpleEmail, retryTimes,  headers.get(AmqpHeaders.MESSAGE_ID).toString());
+                    simpleEmailService.retrySendSimpleEmailToPerson(simpleEmail, currentRetryTimes,  headers.get(AmqpHeaders.MESSAGE_ID).toString());
                     //消息確認,拉閘就gg
                     channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
                 }
             } catch (IOException q) {
                 log.info("消息发布失败 message = {}, e = {}", simpleEmail.toString(), q);
             }
-            log.info("确认消息失败 message = {}, e ={}", simpleEmail.toString(), e);
         }
     }
 }
