@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
 import javax.annotation.PostConstruct;
 import java.net.URI;
 import java.nio.file.StandardWatchEventKinds;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
 import static com.sun.jmx.mbeanserver.Util.cast;
 
 
@@ -72,11 +74,11 @@ public class ModifyFileListener {
                                 .collect(Collectors.toList());
                         String refreshServiceName = refreshServiceNames.size() > 0 ? refreshServiceNames.get(0) : null;
                         //发布事件,/bus/refresh?destination={对应的服务}集群
-                        if(StringUtils.isNotBlank(refreshServiceName)){
+                        if (StringUtils.isNotBlank(refreshServiceName)) {
                             //本地ip
                             String host = "localhost";
                             //本地端口
-                            String port =  environment.getProperty("server.port");
+                            String port = environment.getProperty("server.port");
                             UriComponentsBuilder builder = UriComponentsBuilder.newInstance();
                             builder.scheme("http");
                             builder.host(host);
@@ -84,7 +86,7 @@ public class ModifyFileListener {
                             builder.path("/actuator/bus-refresh");
                             builder.query("destination={destination}");
                             URI uri = builder.build().expand(refreshServiceName.concat(":**")).encode().toUri();
-                            ResponseEntity responseEntity = restTemplate.postForEntity(uri,null,boolean.class);
+                            ResponseEntity responseEntity = restTemplate.postForEntity(uri, null, boolean.class);
                         }
                         continue;
                     }

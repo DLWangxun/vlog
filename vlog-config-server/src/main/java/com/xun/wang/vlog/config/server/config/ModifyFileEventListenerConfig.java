@@ -33,7 +33,7 @@ public class ModifyFileEventListenerConfig {
 
 
     @Bean
-    public WatchService  modifyFileEventWatchService() throws IOException {
+    public WatchService modifyFileEventWatchService() throws IOException {
         //构造监听服务
         WatchService watcher = FileSystems.getDefault().newWatchService();
         //监听注册，监听实体的创建、修改、删除事件，并以高频率(每隔2秒一次，默认是10秒)监听

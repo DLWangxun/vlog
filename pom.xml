@@ -9,12 +9,13 @@
     <name>vlog</name>
 
     <modules>
-        <module>vlog-email-api</module>
-        <module>vlog-email-producer</module>
-        <module>vlog-email-customer</module>
+        <module>vlog-message-producer</module>
+        <module>vlog-message-customer</module>
+        <module>vlog-message-api</module>
         <module>vlog-config-server</module>
         <module>vlog-eureka-server</module>
         <module>vlog-zuul-proxy</module>
+        <module>vlog-common</module>
     </modules>
     <packaging>pom</packaging>
 
