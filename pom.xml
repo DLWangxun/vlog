@@ -16,6 +16,7 @@
         <module>vlog-eureka-server</module>
         <module>vlog-zuul-proxy</module>
         <module>vlog-common</module>
+        <module>vlog-auth-server</module>
     </modules>
     <packaging>pom</packaging>
 

@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka
+spring:
+  cloud:
+    bus:
+      trace:
+        enabled: true
+    config:
+      discovery:
+        enabled: true
+        serviceId: vlog-config-server
+      label: master
+      name: 'message-customer'
+      profile: default

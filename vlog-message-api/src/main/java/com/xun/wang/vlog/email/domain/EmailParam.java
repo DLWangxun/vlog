@@ -21,7 +21,6 @@ public class EmailParam implements Serializable {
     private String[] reciever;
     private String name;
     private String subject;
-    private String[] content;
     private EmailTemplate template;
 
 }

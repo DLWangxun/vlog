@@ -76,7 +76,7 @@ public class ModifyFileListener {
                         //发布事件,/bus/refresh?destination={对应的服务}集群
                         if (StringUtils.isNotBlank(refreshServiceName)) {
                             //本地ip
-                            String host = "localhost";
+                            String host = "127.0.0.1";
                             //本地端口
                             String port = environment.getProperty("server.port");
                             UriComponentsBuilder builder = UriComponentsBuilder.newInstance();

@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName SimpleEmail
@@ -18,4 +19,5 @@ public class EmailTemplate  implements Serializable {
     private static final long serialVersionUID = 8830258957473993741L;
     private String templateUrl;
     private Source[] sources;
+    private Map<String,String> content;
 }

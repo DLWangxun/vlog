@@ -1,0 +1,10 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 9999
+spring:
+  application:
+    name: vlog-eureka-server

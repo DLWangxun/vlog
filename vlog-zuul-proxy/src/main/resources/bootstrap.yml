@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    config:
+      name: zuul-proxy
+      profile: default
+      label: master
+      discovery:
+        enabled: true
+        serviceId: vlog-config-server
+    bus:
+      trace:
+        enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka
+

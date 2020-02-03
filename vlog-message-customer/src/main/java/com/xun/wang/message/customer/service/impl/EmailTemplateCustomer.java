@@ -41,6 +41,9 @@ public class EmailTemplateCustomer {
     @Value("${message.customer.retry-times}")
     private Integer retryTimes;
 
+    @Value("${message.email.sender}")
+    private String sender;
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -61,13 +64,18 @@ public class EmailTemplateCustomer {
             //创建message
             MimeMessage message = mailSender.createMimeMessage();
             MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
-            messageHelper.setFrom(emailParam.getSender());
+            messageHelper.setFrom(sender);
             messageHelper.setTo(emailParam.getReciever());
             messageHelper.setSubject(emailParam.getSubject());
             Context context = new Context();
+            //姓名
             context.setVariable("name", emailParam.getName());
-            context.setVariable("content", emailParam.getContent());
             context.setVariable("sender", emailParam.getSender());
+            //内容
+            emailParam.getTemplate().getContent().forEach((key,value)->{
+                context.setVariable(key,value);
+            });
+            //图片
             Arrays.stream(emailParam.getTemplate().getSources()).forEach(source -> {
                 context.setVariable(source.getName(),source.getSourceUrl());
             });
