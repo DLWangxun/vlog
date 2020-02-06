@@ -1,0 +1,23 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  port: 6666
+spring:
+  application:
+    name: vlog-auth-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 180000
+      auto-commit: true
+      max-lifetime: 200000
+      connection-timeout: 30000
+      connection-test-query: select 1
+    password: root
+    url: jdbc:mysql://localhost:3306/vlog?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root

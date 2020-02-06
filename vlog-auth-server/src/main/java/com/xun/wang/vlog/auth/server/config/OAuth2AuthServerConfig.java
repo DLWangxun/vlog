@@ -63,7 +63,8 @@ public class OAuth2AuthServerConfig extends AuthorizationServerConfigurerAdapter
 	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-		security.checkTokenAccess("isAuthenticated()");
+		security.allowFormAuthenticationForClients()
+				.checkTokenAccess("isAuthenticated()");
 	}
 	
 

@@ -1,0 +1,44 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+message:
+  customer:
+    retry-times: 3
+  email:
+    host: smtp.mxhichina.com
+    password: Wangxun123
+    sender: postmaster@snkrs.site
+  server:
+    name: vlog-message-producer
+  sms:
+    key: d41d8cd98f00b204e980
+    sendSmsUrl: http://utf8.api.smschinese.cn/?Uid={uid}&Key={key}&smsMob={smsMob}&smsText={smsText}
+    uid: xun.d.wang
+server:
+  port: 8081
+spring:
+  application:
+    name: vlog-message-customer
+  mail:
+    default-encoding: UTF-8
+  rabbitmq:
+    listener:
+      simple:
+        acknowledge-mode: manual
+  ## thymeleaf
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    content-type: text/html;charset=UTF-8
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    suffix: .html
+
+
+
+
+
+

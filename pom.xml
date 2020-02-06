@@ -17,6 +17,7 @@
         <module>vlog-zuul-proxy</module>
         <module>vlog-common</module>
         <module>vlog-auth-server</module>
+        <module>vlog-blog-console</module>
     </modules>
     <packaging>pom</packaging>
 

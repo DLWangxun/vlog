@@ -1,0 +1,59 @@
+email:
+  template: email_template
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+message:
+  producer:
+    emailTemplate:
+      failExchangeName: ${email.template}_exchange@fail
+      failQueueName: ${email.template}_queue@fail
+      failRoutingKey: ${email.template}_fail
+      retryExhangeName: ${email.template}_exchange@retry
+      retryQueueName: ${email.template}_queue@retry
+      retryRoutingKey: ${email.template}_retry
+      workExchangeName: ${email.template}_exchange
+      workQueueName: ${email.template}_queue
+      workRoutingKey: ${email.template}
+    retryTimeSlot: 10000
+    smsTemplate:
+      failExchangeName: ${sms.template}_exchange@fail
+      failQueueName: ${sms.template}_queue@fail
+      failRoutingKey: ${sms.template}_fail
+      retryExhangeName: ${sms.template}_exchange@retry
+      retryQueueName: ${sms.template}_queue@retry
+      retryRoutingKey: ${sms.template}_retry
+      workExchangeName: ${sms.template}_exchange
+      workQueueName: ${sms.template}_queue
+      workRoutingKey: ${sms.template}
+server:
+  port: 8080
+sms:
+  template: sms_template
+spring:
+  application:
+    name: vlog-message-producer
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+    password: root
+    url: jdbc:mysql://localhost:3306/vlog?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  rabbitmq:
+    host: 127.0.0.1
+    password: wangxun
+    port: 5672
+    publisher-confirms: true
+    publisher-returns: true
+    username: wangxun
+
+

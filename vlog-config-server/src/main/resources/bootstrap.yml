@@ -7,7 +7,7 @@ management:
     enabled: false
 properties:
   file:
-    path: ${user.dir}\vlog-config-server\src\main\resources\configs
+    path: ${user.dir}/vlog-config-server/src/main/resources/configs
 spring:
   cloud:
     bus:
