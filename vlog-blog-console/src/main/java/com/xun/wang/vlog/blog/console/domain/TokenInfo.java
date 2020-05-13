@@ -21,9 +21,9 @@ public class TokenInfo {
 	private String token_type;
 	private Long expires_in;
 	private String scope;
-	
+
 	private LocalDateTime expireTime;
-	
+
 	public TokenInfo init() {
 		expireTime = LocalDateTime.now().plusSeconds(expires_in - 3);
 		return this;
@@ -33,5 +33,5 @@ public class TokenInfo {
 	public boolean isExpired() {
 		return expireTime.isBefore(LocalDateTime.now());
 	}
-	
+
 }

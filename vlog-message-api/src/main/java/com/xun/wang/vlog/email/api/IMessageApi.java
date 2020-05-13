@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 
 
-@FeignClient(name = "${message.server.name}",
-        path = "/message")
+@FeignClient(name = "${message.server.name}", path = "/message")
 public interface IMessageApi {
 
     /**

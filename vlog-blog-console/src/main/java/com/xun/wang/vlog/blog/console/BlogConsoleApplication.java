@@ -1,10 +1,8 @@
-package com.xun.wang.message.client;
+package com.xun.wang.vlog.blog.console;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
-
 
 // 服务发现
 @EnableDiscoveryClient

@@ -7,10 +7,7 @@ import java.util.Date;
 
 import lombok.Data;
 
-/**
- * @author jojo
- *
- */
+
 @Data
 public class TokenInfo {
 

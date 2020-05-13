@@ -1,14 +1,14 @@
 package com.xun.wang.message.client.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.xun.wang.message.client.holder.MessageServiceHolder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 
 /**
@@ -25,6 +25,9 @@ public class SendMsgController {
 
     @Autowired
     private MessageServiceHolder messageServiceHolder;
+
+    @Autowired
+    private OAuth2RestTemplate restTemplate;
 
 
     /**
@@ -57,6 +60,14 @@ public class SendMsgController {
                           @RequestBody String paramStr) throws IOException{
         // 重发消息
         return  messageServiceHolder.findmsgServiceByType(businessType).retrySendProccess(paramStr,currentRetryTimes,messageId);
+    }
+
+    @GetMapping("/user")
+    //@PreAuthorize("#oauth2.hasScope('read')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @SentinelResource("getUser")
+    public String getUser(@AuthenticationPrincipal String username ){
+        return username;
     }
 
 

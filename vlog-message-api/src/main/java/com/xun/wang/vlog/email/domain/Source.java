@@ -17,6 +17,6 @@ import java.io.Serializable;
 public class Source implements Serializable {
 
     private static final long serialVersionUID = -8552136683346076657L;
-    private String name;
-    private String sourceUrl;
+    private String sourceName;
+    private String sourceUrlValue;
 }

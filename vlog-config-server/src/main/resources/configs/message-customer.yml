@@ -27,6 +27,7 @@ spring:
     listener:
       simple:
         acknowledge-mode: manual
+
   ## thymeleaf
   thymeleaf:
     cache: false
@@ -36,6 +37,17 @@ spring:
     mode: HTML5
     prefix: classpath:/templates/
     suffix: .html
+
+## retry
+retry:
+  backOff:
+    interval: 1
+    multiplier: 2
+    maxInterval: 1000
+  policy:
+    maxAttempts: 2
+
+
 
 
 

@@ -15,3 +15,11 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:9999/eureka
 
+security:
+  oauth2:
+    client:
+      client-id: console
+      client-secret: 123456
+    resource:
+      jwt:
+        key-uri: http://localhost:8383/oauth/token_key

@@ -29,7 +29,7 @@ message:
       workQueueName: ${sms.template}_queue
       workRoutingKey: ${sms.template}
 server:
-  port: 8080
+  port: 8023
 sms:
   template: sms_template
 spring:
@@ -55,5 +55,6 @@ spring:
     publisher-confirms: true
     publisher-returns: true
     username: wangxun
+
 
 

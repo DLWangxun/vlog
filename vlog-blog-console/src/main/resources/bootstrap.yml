@@ -4,4 +4,4 @@ eureka:
       defaultZone: http://localhost:9999/eureka
 
 server:
-  port: 8088
+  port: 8089

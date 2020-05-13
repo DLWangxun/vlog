@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Siemens Sinnovation</title>
     <style>
-        .button { nn 00
+        .button {
+            nn 00
             background-color: #4CAF50;
             border-radius: 12px;
             border: none;
@@ -29,14 +30,20 @@
 </head>
 <body style="margin: 0;padding: 0;">
 
-<table align="center" border="1" cellpadding="0" cellspacing="0" width="600px">
+<table align="center" border="1" cellpadding="0" cellspacing="0" width="600px" th:object="${template}">
     <tr>
         <td>
             <table align="center" border="0" cellpadding="0" cellspacing="0" width="600"
                    style="border-collapse: collapse;">
                 <tr>
                     <td align="center" style="padding: 40px 0 30px 0;">
-                        <img th:src="${flcp}" alt='logo' title='logo'>
+                        <div th:each="source : *{sources}">
+                            <div th:if="${source.sourceName} == 'flcp'">
+                                <img th:src="${source.sourceUrlValue}" alt='logo' title='logo'>
+                            </div>
+                        </div>
+                        </div>
+
                     </td>
                 </tr>
 
@@ -46,8 +53,10 @@
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
                                 <td colspan="2" style="padding: 0 0 3px 0">
-                                    <div> <!--只遍历p，推荐使用-->
-                                        <p th:text="${message}" th:each="message : ${content}" />
+                                    <div th:each="content : *{content}">
+                                        <div th:if="${content.contentName} == 'content'">
+                                            <p th:text="${content.contentValue}"/>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

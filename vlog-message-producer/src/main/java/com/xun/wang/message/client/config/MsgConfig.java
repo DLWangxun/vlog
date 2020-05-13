@@ -168,36 +168,6 @@ public class MsgConfig {
         }
 
         /**
-         * 声明重试交换机的名称
-         *
-         * @return
-         */
-        @Bean
-        DirectExchange emailRetryExchange() {
-            return new DirectExchange(msgProperties.getEmailTemplate().getRetryExhangeName());
-        }
-
-        /**
-         * 声明重试队列
-         *
-         * @return
-         */
-        @Bean
-        Queue emailRetryQueue() {
-            Map<String, Object> args = new HashMap<>(2);
-            //声明重试交换器
-            args.put("x-dead-letter-exchange", msgProperties.getEmailTemplate().getWorkExchangeName());
-            //声明重试路由键
-            args.put("x-dead-letter-routing-key", msgProperties.getEmailTemplate().getWorkRoutingKey());
-            return new Queue(msgProperties.getEmailTemplate().getRetryQueueName(), true, false, false, args);
-        }
-
-        @Bean
-        Binding emailBindingRetry() {
-            return BindingBuilder.bind(emailRetryQueue()).to(emailRetryExchange()).with(msgProperties.getEmailTemplate().getRetryRoutingKey());
-        }
-
-        /**
          * 声明失败交换机的名称
          *
          * @return
